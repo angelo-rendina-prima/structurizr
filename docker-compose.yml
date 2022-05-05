@@ -3,7 +3,16 @@ version: "3.8"
 services:
   structurizr:
     image: structurizr/lite
+    depends_on:
+      - handler
     volumes:
       - "./structurizr:/usr/local/structurizr"
     ports:
       - "6112:8080"
+  
+  handler:
+    image: alpine:3.14
+    volumes:
+      - "./handler:/"
+    ports:
+      - "6113:6113"
